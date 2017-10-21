@@ -1,4 +1,3 @@
 # <INSTALLED_ADDONS>  # Warning: text inside the INSTALLED_ADDONS tags is auto-generated. Manual changes will be overwritten.
-aldryn-addons==0.4
-aldryn-django==1.6.11.1
+https://control.divio.com/api/v1/apps/serve/aldryn-django/1.8.18.3/162ac242-6b59-4f36-81c8-b5f003b6cb43/aldryn-django-1.8.18.3.tar.gz#egg=aldryn-django==1.8.18.3
 # </INSTALLED_ADDONS>
