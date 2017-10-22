@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Random Quote</h2>
+
+{% if random_quote == None %}
+    {# There are no quotes in this collection. Add some! #}
+    <blockquote>Start at the very beginning, a very good place to start.<cite>The Sound of Music</cite></blockquote>
+{% else %}
+<blockquote>{{ random_quote }}<cite>{{ random_quote.author.short_name }}</cite></blockquote>>
+{% endif %}
+
+{% endblock content %}
