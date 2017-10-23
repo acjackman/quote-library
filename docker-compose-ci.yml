@@ -5,7 +5,8 @@ web:
  ports:
   - "8000:80"
  command: python manage.py runserver 0.0.0.0:80
- env_file: .env-local
+ environment:
+  - DATABASE_URL=postgres://postgres@postgres:5432/db
 
 db:
  image: postgres:9.4
