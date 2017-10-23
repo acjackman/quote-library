@@ -1,7 +1,7 @@
 from test_plus.test import TestCase
 
 from .factories import QuoteFactory
-from ..users.factories import StaffFactory
+from quotelibrary.users.factories import StaffFactory
 
 
 class QuoteViewTestCase(TestCase):

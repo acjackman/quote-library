@@ -4,7 +4,7 @@ from faker import Faker
 
 from .models import Quote
 
-from ..authors.factories import AuthorFactory
+from authors.factories import AuthorFactory
 
 fake = Faker()
 

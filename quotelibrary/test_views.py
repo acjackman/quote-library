@@ -1,6 +1,6 @@
 from test_plus import TestCase
 
-from .quotes.factories import QuoteFactory
+from quotes.factories import QuoteFactory
 
 
 class HomePageTest(TestCase):
