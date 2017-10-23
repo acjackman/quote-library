@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+import environ
+env = environ.Env()
+
 
 INSTALLED_ADDONS = [
     # <INSTALLED_ADDONS>  # Warning: text inside the INSTALLED_ADDONS tags is auto-generated. Manual changes will be overwritten.
@@ -99,7 +102,11 @@ REST_FRAMEWORK = {
 
 # Debugging
 # ------------------------------------------------------------------------------
-if DEBUG:
+
+CI = env.bool('CI', False)
+if CI:
+    pass
+elif DEBUG:
     INSTALLED_APPS.extend(["debug_toolbar"])
 
     def _show_toolbar(request):
@@ -108,7 +115,7 @@ if DEBUG:
     MIDDLEWARE_CLASSES.insert(
         MIDDLEWARE_CLASSES.index("django.middleware.gzip.GZipMiddleware") + 1,
         "debug_toolbar.middleware.DebugToolbarMiddleware"
-        )
+    )
     DEBUG_TOOLBAR_CONFIG = {
         'SHOW_TOOLBAR_CALLBACK': _show_toolbar,
         'DISABLE_PANELS': [
