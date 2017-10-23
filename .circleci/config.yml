@@ -36,4 +36,4 @@ jobs:
             set -x
             docker-compose -f docker-compose-ci.yml up -d db
             docker-compose -f docker-compose-ci.yml run --rm web bash /app/.circleci/wait-for-postgres.sh
-            docker-compose -f docker-compose-ci.yml run --rm web pytest
+            docker-compose -f docker-compose-ci.yml run --rm web cd project && pytest
