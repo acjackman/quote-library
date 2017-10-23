@@ -1,0 +1,7 @@
+<section id="authorInitials">
+  <ul class="author_initials">
+  {% for letter in initials %}
+    <li><a href="{% url 'authors:list' %}?last_initial={{letter}}">{{letter}}</a></li>
+  {% endfor %}
+  </ul>
+</section>

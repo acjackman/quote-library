@@ -1,0 +1,199 @@
+/* These styles are generated from project.scss. */
+
+.alert-debug {
+  color: black;
+  background-color: white;
+  border-color: #d6e9c6;
+}
+
+.alert-error {
+  color: #b94a48;
+  background-color: #f2dede;
+  border-color: #eed3d7;
+}
+
+/* This is a fix for the bootstrap4 alpha release */
+/*
+You are allowed to do whatever you want with this layout. Though I would be pleased if you placed a link on your site to csseasy.com or to profit42.com (best "blog about hacking" ever). Donations are also welcome: paypal@profit42.com (or follow the donation button on csseasy.com)
+*/
+
+
+/*
+You are allowed to do whatever you want with this layout. Though I would be pleased if you placed a link on your site to csseasy.com or to profit42.com (best "blog about hacking" ever). Donations are also welcome: paypal@profit42.com (or follow the donation button on csseasy.com)
+*/
+
+body {
+background-image:url('http://quotes.acjackman.com/_images/linen.jpg');
+}
+
+#wrap {
+width:750px;
+margin:0px auto;
+margin-top:30px;
+color: black;
+font-family: 'Nobile', arial, serif;
+}
+
+/* ----- LINKS ----- */
+a {
+text-decoration: none;
+color: black;
+}
+a:hover {
+color: #0080FF;
+}
+
+showlink.a {
+color: #0080FF;
+text-decoration: underline;
+}
+showlink.a:hover {
+background: #FF8000;
+}
+
+/* ----- HEADER ----- */
+
+
+#header {
+width:750px;
+background-color:white;
+padding: 1px 10px 1px 10px;
+color: white;
+
+
+/*Rounded Corners*/
+-moz-border-radius: 10px;
+-webkit-border-radius: 10px;
+border-radius: 10px; /* future proofing */
+-khtml-border-radius: 10px; /* for old Konqueror browsers */
+
+}
+
+#header a:hover {
+color: black;
+}
+
+
+/* ----- NAVIGATION ----- */
+
+#navigation {
+width:750px;
+background-color:white;
+margin-top:10px;
+padding: 10px 10px;
+
+/*Rounded Corners*/
+-moz-border-radius: 10px;
+-webkit-border-radius: 10px;
+border-radius: 10px; /* future proofing */
+-khtml-border-radius: 10px; /* for old Konqueror browsers */
+}
+
+#navigation ul {
+margin:0;
+padding:0;
+list-style:none;
+text-align: center;
+}
+
+#navigation li {
+display:inline;
+margin:0;
+padding:10px;
+}
+
+#navigation form, submit, text {
+display:inline
+text-align: center;
+}
+
+#search{
+text-align: center;
+}
+
+
+/* ----- MAIN CONTENT ----- */
+
+#content {
+width:750px;
+min-height:200px; /* for modern browsers */
+height:auto !important; /* for modern browsers */
+background-color:white;
+margin-top:10px;
+padding: 10px 10px ;
+
+/*Rounded Corners*/
+-moz-border-radius: 10px;
+-webkit-border-radius: 10px;
+border-radius: 10px; /* future proofing */
+-khtml-border-radius: 10px; /* for old Konqueror browsers */
+}
+
+#authorInitials ul {
+margin:0;
+padding:0;
+text-align: center;
+list-style:none;
+}
+#authorInitials li {
+display:inline;
+margin:0;
+padding:5px;
+}
+
+
+/* ----- FOOTER ----- */
+
+#footer {
+width:750px;
+background-color:white;
+margin-top:10px;
+padding: 10px 10px 10px 10px;
+
+/*Rounded Corners*/
+-moz-border-radius: 10px;
+-webkit-border-radius: 10px;
+border-radius: 10px; /* future proofing */
+-khtml-border-radius: 10px; /* for old Konqueror browsers */
+}
+
+
+/* Blockquote */
+blockquote {
+font-family: Georgia, serif;
+font-size: 18px;
+font-style: italic;
+/*width: 500px;*/
+margin: 0.25em 0;
+padding: 0.25em 60px;
+line-height: 1.45;
+position: relative;
+color: #383838;
+}
+blockquote:before {
+display: block;
+content: "\201C";
+font-size: 80px;
+position: absolute;
+left: 0px;
+top: -20px;
+color: #7a7a7a;
+}
+blockquote cite {
+color: #999999;
+font-size: 16px;
+display: block;
+margin-top: 5px;
+}
+blockquote cite:before {
+content: "\2014 \2009";
+}
+
+
+/* Display django-debug-toolbar.
+   See https://github.com/django-debug-toolbar/django-debug-toolbar/issues/742
+   and https://github.com/pydanny/cookiecutter-django/issues/317
+*/
+[hidden][style="display: block;"] {
+  display: block !important;
+}

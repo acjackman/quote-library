@@ -1,8 +1,13 @@
+import logging
 from random import randint
 
 from django.shortcuts import render
 
+from authors.models import Author
 from quotes.models import Quote
+
+
+log = logging.getLogger(__name__)
 
 
 def home_page(request):
@@ -12,7 +17,10 @@ def home_page(request):
     except ValueError:
         # randint raises ValueError on trying to select from a 0 length range
         random_quote = None
+    initials = Author.last_initials()
+    log.debug(initials)
     context = {
-        'random_quote': random_quote
+        'initials': initials,
+        'random_quote': random_quote,
     }
     return render(request, 'pages/home.html', context)

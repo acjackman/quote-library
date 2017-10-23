@@ -36,14 +36,9 @@ class AuthorListView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(AuthorListView, self).get_context_data(**kwargs)
-
-        initials = set(string.ascii_uppercase)
-        author_names = Author.objects.values('last_name').distinct()
-        for obj in author_names:
-            initials.add(obj['last_name'][0])
-        acj = list(initials)
-        acj.sort()
-        context['initials'] = acj
+        initials = Author.last_initials()
+        log.warning(initials)
+        context['initials'] = initials
         return context
 
 

@@ -1,3 +1,5 @@
+import string
+
 from django.db import models
 from django.urls import reverse
 
@@ -49,3 +51,11 @@ class Author(TimeStampedModel):
 
     def get_absolute_url(self):
         return reverse('authors:detail', args=[str(self.id)])
+
+    @classmethod
+    def last_initials(cls):
+        initials = set(string.ascii_uppercase)
+        author_names = Author.objects.values('last_name').distinct()
+        for obj in author_names:
+            initials.add(obj['last_name'][0])
+        return sorted(list(initials))

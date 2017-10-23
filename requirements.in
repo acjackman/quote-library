@@ -27,3 +27,6 @@ django-filter==1.0.4
 # Markdown
 markdown2==2.3.1
 django-markdown-deux==1.0.5
+
+# Development/Debugging
+django-debug-toolbar==1.8

@@ -96,3 +96,31 @@ REST_FRAMEWORK = {
         'api.permissions.IsAdminOrReadOnly',
     )
 }
+
+# Debugging
+# ------------------------------------------------------------------------------
+if DEBUG:
+    INSTALLED_APPS.extend(["debug_toolbar"])
+
+    def _show_toolbar(request):
+        return True
+
+    MIDDLEWARE_CLASSES.insert(
+        MIDDLEWARE_CLASSES.index("django.middleware.gzip.GZipMiddleware") + 1,
+        "debug_toolbar.middleware.DebugToolbarMiddleware"
+        )
+    DEBUG_TOOLBAR_CONFIG = {
+        'SHOW_TOOLBAR_CALLBACK': _show_toolbar,
+        'DISABLE_PANELS': [
+            'debug_toolbar.panels.redirects.RedirectsPanel',
+        ],
+        'SHOW_TEMPLATE_CONTEXT': True,
+    }
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'incremental': True,
+        'root': {
+            'level': 'DEBUG',
+        },
+    }
