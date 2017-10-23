@@ -28,6 +28,7 @@ jobs:
           command: |
             set -x
             docker-compose build
+            docker-compose up -d
 
       # run tests!
       - run:
