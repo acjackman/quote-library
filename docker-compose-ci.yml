@@ -9,4 +9,3 @@ web:
 
 db:
  image: postgres:9.4
- volumes:
