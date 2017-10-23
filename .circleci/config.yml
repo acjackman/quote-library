@@ -1,0 +1,32 @@
+# Python CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-python/ for more details
+#
+version: 2
+jobs:
+  build:
+    machine: true
+      docker_layer_caching: true
+    steps:
+      - run:
+          name: Install Docker Compose
+          command: |
+            set -x
+            curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+            chmod +x /usr/local/bin/docker-compose
+
+      - checkout
+
+      # run tests!
+      - run:
+          name: Build image
+          command: |
+            set -x
+            docker-compose build
+
+      # run tests!
+      - run:
+          name: Run tests
+          command: |
+            set -x
+            docker-compose run --rm --service-ports web pytest
