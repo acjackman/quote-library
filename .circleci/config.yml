@@ -35,4 +35,4 @@ jobs:
           name: Run tests
           command: |
             set -x
-            docker-compose run --rm --service-ports web pytest
+            docker-compose run --exit-code-from web pytest
