@@ -26,6 +26,9 @@ RUN pip-reqs compile && \
         --requirement requirements.urls
 # </PYTHON>
 
+COPY ./.circleci/wait-for-postgres.sh /wait-for-postgres.sh
+RUN chmod u+x /wait-for-postgres.sh
+
 # <SOURCE>
 COPY . /app
 # </SOURCE>
