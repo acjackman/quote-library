@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.conf.urls import url, include
 from . import views
+from rest_framework.authtoken import views as auth_views
 from rest_framework.routers import DefaultRouter
 from rest_framework.schemas import get_schema_view
 
@@ -16,5 +17,6 @@ schema_view = get_schema_view(title='Quote Library API')
 urlpatterns = [
     url(r'^schema/$', schema_view),
     url(r'^', include(router.urls)),
+    url(r'^api-token-auth/', auth_views.obtain_auth_token),
     url(r'^api-auth/', include('rest_framework.urls')),
 ]
