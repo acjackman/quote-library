@@ -34,12 +34,6 @@
             <li><a href="{% url 'account_login' %}">{% trans "Sign In" %}</a></li>
           {% endif %}
         </ul>
-        <div id="search">
-        <form name="search" method=GET>
-          <input text="text" size="40" name="keyword" >
-          <input type="submit" value="Search">
-        </form>
-        </div>
       </nav>
       <section id="content">
         {% if messages %}
