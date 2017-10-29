@@ -31,7 +31,7 @@ class Quote(TimeStampedModel):
     )
 
     def __str__(self):
-        return '"%s"' % (' '.join(self.text.split()[1:5]))
+        return '"%s"' % (' '.join(self.text.split()[0:4]))
 
     def get_absolute_url(self):
         return reverse('quotes:detail', args=[str(self.id)])
