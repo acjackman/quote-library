@@ -48,3 +48,4 @@ ipdb==0.10.1
 pytest-django==3.0.0
 pytest-sugar==0.7.1
 pytest-env==0.6.2
+pytest-mock==1.6.3
