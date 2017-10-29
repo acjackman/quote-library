@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import environ
+import os
+import raven
 env = environ.Env()
 
 
@@ -99,20 +101,22 @@ REST_FRAMEWORK = {
 
 # Debugging
 # ------------------------------------------------------------------------------
-ROOT_DIR = environ.Path(__file__) - 1  # `/settings.py` -> `/`
-DEPLOY_STAGE = env.str('STAGE')
-CI = env.bool('CI', False)
-if CI:
-    pass
-elif not DEBUG and DEPLOY_STAGE != 'local':
-    import raven
-    INSTALLED_APPS.extend('raven.contrib.django.raven_compat')
+GIT_DIR = environ.Path(__file__)
+ACJ_DEPLOY_STAGE = os.environ.get('STAGE')
+
+if ACJ_DEPLOY_STAGE != 'local':
+    INSTALLED_APPS.extend(['raven.contrib.django.raven_compat'])
     RAVEN_CONFIG = {
         'dsn': 'https://659b41f7546b440b968e915ae50d7974:59c74e5e2cd442b69087de9e6fc99e8d@sentry.io/237107',
         # If you are using git, you can also automatically configure the
         # release based on the git info.
-        'release': raven.fetch_git_sha(ROOT_DIR),
+        # 'release': raven.fetch_git_sha(str(GIT_DIR)),
     }
+
+
+CI = env.bool('CI', False)
+if CI:
+    pass
 elif DEBUG:
     DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
     INSTALLED_APPS.extend(["debug_toolbar"])
