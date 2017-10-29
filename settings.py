@@ -107,7 +107,7 @@ ACJ_DEPLOY_STAGE = os.environ.get('STAGE')
 if ACJ_DEPLOY_STAGE != 'local':
     INSTALLED_APPS.extend(['raven.contrib.django.raven_compat'])
     RAVEN_CONFIG = {
-        'dsn': 'https://659b41f7546b440b968e915ae50d7974:59c74e5e2cd442b69087de9e6fc99e8d@sentry.io/237107',
+        'dsn': os.environ.get('SENTRY_DSN'),
         # If you are using git, you can also automatically configure the
         # release based on the git info.
         # 'release': raven.fetch_git_sha(str(GIT_DIR)),
