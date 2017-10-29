@@ -3,6 +3,7 @@ import environ
 env = environ.Env()
 
 
+
 INSTALLED_ADDONS = [
     # <INSTALLED_ADDONS>  # Warning: text inside the INSTALLED_ADDONS tags is auto-generated. Manual changes will be overwritten.
     'aldryn-addons',
@@ -37,10 +38,6 @@ LOCAL_APPS = [
 ]
 
 INSTALLED_APPS.extend(THIRD_PARTY_APPS + LOCAL_APPS)
-
-MIDDLEWARE_CLASSES.extend([
-    # add your own middlewares here
-])
 
 # PASSWORD VALIDATION
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators
@@ -102,10 +99,20 @@ REST_FRAMEWORK = {
 
 # Debugging
 # ------------------------------------------------------------------------------
-
+ROOT_DIR = environ.Path(__file__) - 1  # `/settings.py` -> `/`
+DEPLOY_STAGE = env.str('STAGE')
 CI = env.bool('CI', False)
 if CI:
     pass
+elif not DEBUG and DEPLOY_STAGE != 'local':
+    import raven
+    INSTALLED_APPS.extend('raven.contrib.django.raven_compat')
+    RAVEN_CONFIG = {
+        'dsn': 'https://659b41f7546b440b968e915ae50d7974:59c74e5e2cd442b69087de9e6fc99e8d@sentry.io/237107',
+        # If you are using git, you can also automatically configure the
+        # release based on the git info.
+        'release': raven.fetch_git_sha(ROOT_DIR),
+    }
 elif DEBUG:
     DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
     INSTALLED_APPS.extend(["debug_toolbar"])
