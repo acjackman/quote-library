@@ -102,7 +102,8 @@ REST_FRAMEWORK = {
 # Sentry/Raven ---------------------------------------------------------------
 SENTRY_DSN = os.environ.get('SENTRY_DSN')
 if SENTRY_DSN:
-    INSTALLED_APPS.extend(['raven.contrib.django.raven_compat'])
+    if 'raven.contrib.django.raven_compat' not in INSTALLED_APPS:
+        INSTALLED_APPS.extend(['raven.contrib.django.raven_compat'])
     RAVEN_CONFIG = {
         'dsn': os.environ.get('SENTRY_DSN'),
         # If you are using git, you can also automatically configure the
