@@ -9,7 +9,11 @@
 <h1>{{ object.full_name }}</h1>
 
 <h2>Quote List</h2>
-
+<ul>
+{% for quote in object.quote_set.all %}
+  <li><a href="{% url 'quotes:detail' quote.pk %}">"{{quote.text}}"</a></li>
+{% endfor %}
+</ul>
 <h2>Details</h2>
 <p>
   Profession: <br />
