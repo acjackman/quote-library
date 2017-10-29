@@ -22,8 +22,9 @@ urlpatterns = [
     url(r'^api/v1/', include('api.urls', namespace='v1')),
 
     # Application URLs
-    url(r'authors/', include('authors.urls', namespace='authors')),
-    url(r'quotes/', include('quotes.urls', namespace='quotes')),
+    url(r'^api/', include('api.urls', namespace='api')),
+    url(r'^authors/', include('authors.urls', namespace='authors')),
+    url(r'^quotes/', include('quotes.urls', namespace='quotes')),
 ] + aldryn_addons.urls.patterns() + i18n_patterns(
     # add your own i18n patterns here
     *aldryn_addons.urls.i18n_patterns()  # MUST be the last entry!
