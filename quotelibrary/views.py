@@ -1,6 +1,7 @@
 import logging
 from random import randint
 
+from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render
 
 from authors.models import Author
@@ -24,3 +25,8 @@ def home_page(request):
         'random_quote': random_quote,
     }
     return render(request, 'pages/home.html', context)
+
+
+@staff_member_required
+def raise_exception(request):
+    raise Exception("Exception to verify handling. Is message where it should be?")
