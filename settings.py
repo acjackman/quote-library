@@ -99,12 +99,34 @@ REST_FRAMEWORK = {
     )
 }
 
-GIT_DIR = environ.Path(__file__)
-ACJ_DEPLOY_STAGE = os.environ.get('STAGE')
+# Sentry/Raven ---------------------------------------------------------------
+SENTRY_DSN = os.environ.get('SENTRY_DSN')
+if SENTRY_DSN:
+    INSTALLED_APPS.extend(['raven.contrib.django.raven_compat'])
+    RAVEN_CONFIG = {
+        'dsn': os.environ.get('SENTRY_DSN'),
+        # If you are using git, you can also automatically configure the
+        # release based on the git info.
+        # 'release': raven.fetch_git_sha(str(GIT_DIR)),
+    }
+
+# Email & Anymail ------------------------------------------------------------
+MAILGUN_KEY = os.environ.get('MAILGUN_KEY')
+MAILGUN_DOMAIN = os.environ.get('MAILGUN_DOMAIN')
+if MAILGUN_KEY and MAILGUN_DOMAIN:
+    INSTALLED_APPS.extend(['anymail'])
+    ANYMAIL = {
+        'MAILGUN_API_KEY': MAILGUN_KEY,
+        "MAILGUN_SENDER_DOMAIN": MAILGUN_DOMAIN
+    }
+    EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+
+
+# Debugging ------------------------------------------------------------------
 CI = env.bool('CI', False)
 if CI:
     pass
-elif DEBUG: # Debugging ------------------------------------------------
+elif DEBUG:
     DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
     INSTALLED_APPS.extend(["debug_toolbar"])
 
@@ -130,19 +152,3 @@ elif DEBUG: # Debugging ------------------------------------------------
             'level': 'DEBUG',
         },
     }
-elif ACJ_DEPLOY_STAGE != 'local':  # Production ------------------------------
-    # Raven ------------------------------------------------------------------
-    INSTALLED_APPS.extend(['raven.contrib.django.raven_compat'])
-    RAVEN_CONFIG = {
-        'dsn': os.environ.get('SENTRY_DSN'),
-        # If you are using git, you can also automatically configure the
-        # release based on the git info.
-        # 'release': raven.fetch_git_sha(str(GIT_DIR)),
-    }
-
-    # Email & Anymail --------------------------------------------------------
-    INSTALLED_APPS.extend(['anymail'])
-    ANYMAIL = {
-        'MAILGUN_API_KEY': os.environ.get('MAILGUN_KEY'),
-    }
-    EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
