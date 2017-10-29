@@ -3,7 +3,7 @@
 {% block content %}
 <h2>Random Quote</h2>
 {% if random_quote %}
-<blockquote>{{ random_quote.text }}<cite>{{ random_quote.author.short_name }}</cite></blockquote>
+<blockquote><a href="{% url 'quotes:detail' random_quote.pk %}">{{ random_quote.text }}</a><cite><a href="{% url 'authors:detail' random_quote.author.pk %}">{{ random_quote.author.short_name }}</a></cite></blockquote>
 {% else %}
     {# There are no quotes in this collection. Add some! #}
     <blockquote>Start at the very beginning, a very good place to start.<cite>The Sound of Music</cite></blockquote>
