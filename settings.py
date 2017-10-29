@@ -107,6 +107,7 @@ CI = env.bool('CI', False)
 if CI:
     pass
 elif DEBUG:
+    DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
     INSTALLED_APPS.extend(["debug_toolbar"])
 
     def _show_toolbar(request):
