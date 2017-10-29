@@ -100,16 +100,16 @@ REST_FRAMEWORK = {
 }
 
 # Sentry/Raven ---------------------------------------------------------------
-SENTRY_DSN = os.environ.get('SENTRY_DSN')
-if SENTRY_DSN:
-    if 'raven.contrib.django.raven_compat' not in INSTALLED_APPS:
-        INSTALLED_APPS.extend(['raven.contrib.django.raven_compat'])
-    RAVEN_CONFIG = {
-        'dsn': os.environ.get('SENTRY_DSN'),
-        # If you are using git, you can also automatically configure the
-        # release based on the git info.
-        # 'release': raven.fetch_git_sha(str(GIT_DIR)),
-    }
+# SENTRY_DSN = os.environ.get('SENTRY_DSN')
+# if SENTRY_DSN:
+#     if 'raven.contrib.django.raven_compat' not in INSTALLED_APPS:
+#         INSTALLED_APPS.extend(['raven.contrib.django.raven_compat'])
+#     RAVEN_CONFIG = {
+#         'dsn': os.environ.get('SENTRY_DSN'),
+#         # If you are using git, you can also automatically configure the
+#         # release based on the git info.
+#         # 'release': raven.fetch_git_sha(str(GIT_DIR)),
+#     }
 
 # Email & Anymail ------------------------------------------------------------
 MAILGUN_KEY = os.environ.get('MAILGUN_KEY')
