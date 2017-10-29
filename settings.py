@@ -99,25 +99,12 @@ REST_FRAMEWORK = {
     )
 }
 
-# Debugging
-# ------------------------------------------------------------------------------
 GIT_DIR = environ.Path(__file__)
 ACJ_DEPLOY_STAGE = os.environ.get('STAGE')
-
-if ACJ_DEPLOY_STAGE != 'local':
-    INSTALLED_APPS.extend(['raven.contrib.django.raven_compat'])
-    RAVEN_CONFIG = {
-        'dsn': os.environ.get('SENTRY_DSN'),
-        # If you are using git, you can also automatically configure the
-        # release based on the git info.
-        # 'release': raven.fetch_git_sha(str(GIT_DIR)),
-    }
-
-
 CI = env.bool('CI', False)
 if CI:
     pass
-elif DEBUG:
+elif DEBUG: # Debugging ------------------------------------------------
     DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
     INSTALLED_APPS.extend(["debug_toolbar"])
 
@@ -143,3 +130,19 @@ elif DEBUG:
             'level': 'DEBUG',
         },
     }
+elif ACJ_DEPLOY_STAGE != 'local':  # Production ------------------------------
+    # Raven ------------------------------------------------------------------
+    INSTALLED_APPS.extend(['raven.contrib.django.raven_compat'])
+    RAVEN_CONFIG = {
+        'dsn': os.environ.get('SENTRY_DSN'),
+        # If you are using git, you can also automatically configure the
+        # release based on the git info.
+        # 'release': raven.fetch_git_sha(str(GIT_DIR)),
+    }
+
+    # Email & Anymail --------------------------------------------------------
+    INSTALLED_APPS.extend(['anymail'])
+    ANYMAIL = {
+        'MAILGUN_API_KEY': os.environ.get('MAILGUN_KEY'),
+    }
+    EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"

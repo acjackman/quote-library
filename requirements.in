@@ -31,6 +31,9 @@ django-filter==1.0.4
 markdown2==2.3.1
 django-markdown-deux==1.0.5
 
+# Email
+django-anymail==1.1
+
 # Error Catching
 raven==6.3.0
 
