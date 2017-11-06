@@ -6,15 +6,12 @@
 
 {% block content %}
 <div class="container">
-<h1>Quote Detail</h1>
-
 <blockquote>
 {{ object.text }}
+<cite><a href="{{object.author.get_absolute_url}}">{{ object.author.short_name }}</a></cite>
 </blockquote>
 
-
-
-<h2>Details</h2>
+<h3>Details</h3>
 <p>
   {% if object.date %} Date: {{ object.date|date }}<br /> {% endif %}
   {% if object.source %} Source: {{ object.source }}<br /> {% endif %}

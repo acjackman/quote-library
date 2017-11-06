@@ -30,6 +30,7 @@
 <div class="row">
 
   <div class="col-sm-12">
+    <a class="btn btn-primary" href="{% url 'authors:newquote' object.pk %}" role="button">New Quote</a>
     <a class="btn btn-primary" href="{% url 'authors:update' object.pk %}" role="button">Update</a>
     <a class="btn btn-danger" href="{% url 'authors:delete' object.pk %}" role="button">Delete</a>
   </div>

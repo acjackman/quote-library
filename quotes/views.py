@@ -6,7 +6,7 @@ from braces import views as b_views
 
 from .models import Quote
 
-QUOTE_FIELDS = ['text', 'date', 'source', 'reference', 'verified', 'rating', 'added']
+QUOTE_FIELDS = ['author', 'text', 'date', 'source', 'reference', 'verified', 'rating', 'added']
 
 
 class QuoteListView(generic.ListView):
@@ -15,13 +15,6 @@ class QuoteListView(generic.ListView):
 
 class QuoteDetailView(generic.DetailView):
     model = Quote
-
-
-class QuoteCreateView(b_views.LoginRequiredMixin,
-                      b_views.StaffuserRequiredMixin,
-                      generic.CreateView):
-    model = Quote
-    fields = QUOTE_FIELDS
 
 
 class QuoteUpdateView(b_views.LoginRequiredMixin,

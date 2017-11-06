@@ -39,17 +39,6 @@ class QuoteModifyViewTestCase(QuoteViewTestCase):
         super(QuoteModifyViewTestCase, self).setUp()
 
 
-class TestQuoteCreateView(QuoteModifyViewTestCase):
-
-    def test_annon_user_blocked(self):
-        response = self.get('quotes:create')
-        self.response_302(response)
-
-    def test_staff_user_acccess(self):
-        with self.login(username=self.staff_user.username):
-            self.assertGoodView('quotes:create')
-
-
 class TestQuoteUpdateView(QuoteModifyViewTestCase):
 
     def test_annon_user_blocked(self):

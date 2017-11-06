@@ -7,6 +7,7 @@
 
 {% block content %}
 <div class="container">
+<h2>New Quote for <a href="{{author.get_absolute_url}}">{{author.full_name}}</a></h2>
 <form class="form-horizontal" method="post" action="">
     {% csrf_token %}
     {{ form|crispy }}

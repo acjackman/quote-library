@@ -79,3 +79,14 @@ class TestAuthorDeleteView(AuthorModifyViewTestCase):
     def test_staff_user_acccess(self):
         with self.login(username=self.staff_user.username):
             self.assertGoodView('authors:delete', pk=self.author.pk)
+
+
+class TestAuthorQuoteCreateView(AuthorModifyViewTestCase):
+
+    def test_annon_user_blocked(self):
+        response = self.get('authors:newquote', pk=self.author.pk)
+        self.response_302(response)
+
+    def test_staff_user_acccess(self):
+        with self.login(username=self.staff_user.username):
+            self.assertGoodView('authors:newquote', pk=self.author.pk)

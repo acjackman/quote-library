@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^create/$', views.AuthorCreateView.as_view(), name='create'),
     url(r'^(?P<pk>[0-9]+)/update/$', views.AuthorUpdateView.as_view(), name='update'),
     url(r'^(?P<pk>[0-9]+)/delete/$', views.AuthorDeleteView.as_view(), name='delete'),
+    url(r'^(?P<pk>[0-9]+)/new-quote/$', views.AuthorNewQuoteView.as_view(), name='newquote'),
 ]

@@ -66,3 +66,17 @@ class TestAuthorURLs(TestCase):
             resolve('/authors/1/delete/').view_name,
             'authors:delete'
         )
+
+    def test_newquote_reverse(self):
+        """authors:newquote should reverse to /authors/1/new-quote/."""
+        self.assertEqual(
+            reverse('authors:newquote', kwargs={'pk': '1'}),
+            '/authors/1/new-quote/'
+        )
+
+    def test_newquote_resolve(self):
+        """/authors/1/newquote/ should resolve to newquote."""
+        self.assertEqual(
+            resolve('/authors/1/new-quote/').view_name,
+            'authors:newquote'
+        )

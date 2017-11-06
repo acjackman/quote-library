@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse, resolve
 from test_plus.test import TestCase
 
 
-class TestAuthorURLs(TestCase):
+class TestQuoteURLs(TestCase):
     """Test URL patterns for users app."""
 
     def test_list_reverse(self):
@@ -24,20 +24,6 @@ class TestAuthorURLs(TestCase):
     def test_detail_resolve(self):
         """/quotes/1/ should resolve to quotes:detail."""
         self.assertEqual(resolve('/quotes/1/').view_name, 'quotes:detail')
-
-    def test_create_reverse(self):
-        """quotes:create should reverse to /quotes/1/create/."""
-        self.assertEqual(
-            reverse('quotes:create'),
-            '/quotes/create/'
-        )
-
-    def test_create_resolve(self):
-        """/quotes/1/create/ should resolve to quotes:create."""
-        self.assertEqual(
-            resolve('/quotes/create/').view_name,
-            'quotes:create'
-        )
 
     def test_update_reverse(self):
         """quotes:update should reverse to /quotes/1/update/."""
