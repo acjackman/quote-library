@@ -35,7 +35,7 @@ class AuthorListView(generic.ListView):
 
     def get_queryset(self):
         f = AuthorFilter(self.request.GET, queryset=Author.objects.all())
-        return f.qs
+        return f.qs.order_by('last_name', 'first_name', 'middle_name')
 
     def get_context_data(self, **kwargs):
         context = super(AuthorListView, self).get_context_data(**kwargs)
